@@ -1,0 +1,274 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NexGen Luxe Finishes</title>
+
+<style>
+body{margin:0;font-family:'Segoe UI',sans-serif;background:#0a0a0a;color:#fff;}
+header{display:flex;align-items:center;gap:10px;padding:15px;background:#000;border-bottom:1px solid gold;}
+header img{height:45px;}
+header h1{color:gold;font-size:18px;}
+
+.hero{text-align:center;padding:25px;}
+.hero h2{color:gold;}
+.hero p{color:#ccc;}
+
+.container{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;padding:15px;}
+@media(max-width:700px){.container{grid-template-columns:1fr;}}
+
+.card{background:#141414;border-radius:12px;overflow:hidden;cursor:pointer;transition:0.3s;}
+.card:hover{transform:scale(1.03);}
+.card img{width:100%;height:160px;object-fit:cover;}
+.card h3{margin:10px;color:gold;font-size:15px;}
+.card p{margin:0 10px 10px;color:#00ff99;}
+
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999;flex-direction:column;}
+.top{padding:10px;text-align:right;font-size:22px;cursor:pointer;}
+.slider img{width:100%;height:250px;object-fit:cover;}
+
+.dots{text-align:center;margin:8px;}
+.dots span{display:inline-block;width:7px;height:7px;background:#555;border-radius:50%;margin:3px;}
+.dots .active{background:#ff0066;}
+
+.content{padding:15px;}
+.content h2{color:gold;}
+.price{color:#00ff99;font-weight:bold;}
+.desc{color:#ccc;}
+ul{color:#aaa;}
+
+.bottom{position:fixed;bottom:0;width:100%;display:flex;}
+.bottom a{flex:1;padding:15px;text-align:center;font-weight:bold;text-decoration:none;}
+.wa{background:#25D366;color:white;}
+.call{background:#ffcc00;color:black;}
+
+.about{background:#111;padding:25px;line-height:1.6;border-top:1px solid gold;}
+.about h2{color:gold;text-align:center;}
+.about p{color:#ccc;}
+
+.contact-section{text-align:center;padding:30px 15px 80px;background:#111;border-top:1px solid gold;}
+.contact-section h2{color:gold;margin-bottom:20px;}
+
+.contact-icons{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;}
+
+.icon{text-decoration:none;color:white;}
+.icon img{width:45px;height:45px;background:#000;padding:10px;border-radius:50%;}
+.icon p{margin-top:5px;}
+
+.area{margin-top:20px;color:#ccc;}
+.area span{color:gold;font-weight:bold;}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="https://img.sanishtech.com/u/d20ea964a7af5c67cc7da8071ec59c3e.png">
+<h1>NexGen Luxe Finishes</h1>
+</header>
+
+<div class="hero">
+<h2>Where Luxury meets Finish</h2>
+<p>Premium wall & floor textures with modern luxury, clean finish, and lasting quality.</p>
+</div>
+
+<div class="container" id="products"></div>
+
+<!-- ABOUT -->
+<div class="about">
+<h2>About Us</h2>
+<p>
+At NexGen Luxe Finishes, we are a Kerala-based company specializing in transforming spaces with premium wall and floor finishes...
+<br><br>
+<strong>NexGen Luxe Finishes – Where Design Meets Perfection.</strong>
+</p>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section">
+<h2>Contact Us</h2>
+
+<div class="contact-icons">
+<a href="https://wa.me/919207408831" target="_blank" class="icon">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png"><p>WhatsApp</p></a>
+
+<a href="tel:9744728583" class="icon">
+<img src="https://cdn-icons-png.flaticon.com/512/724/724664.png"><p>Call</p></a>
+
+<a href="mailto:Contact@nexgenluxe.online" class="icon">
+<img src="https://cdn-icons-png.flaticon.com/512/732/732200.png"><p>Email</p></a>
+</div>
+
+<p class="area">Serviceable Area: <span>Kerala, Tamil Nadu, Bangalore</span></p>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="top" onclick="closeModal()">✕</div>
+
+<div class="slider">
+<img id="slide">
+<div class="dots" id="dots"></div>
+</div>
+
+<div class="content">
+<h2 id="title"></h2>
+<p class="price" id="price"></p>
+<p class="desc" id="desc"></p>
+<h4>Pros</h4>
+<ul id="pros"></ul>
+</div>
+
+<div class="bottom">
+<a id="wa" class="wa" target="_blank">Get Best Price</a>
+<a href="tel:9744728583" class="call">Call Now</a>
+</div>
+</div>
+
+<script>
+
+const products = [
+
+{
+name:"Microtopping (Wall)",
+price:"₹160/sqft",
+images:[
+"https://img.sanishtech.com/u/d04bede0dc75513fe0e2096d1caa649b.jpg",
+"https://img.sanishtech.com/u/b24646e86ead2f647828209137785973.png"
+],
+desc:"Modern seamless wall finish.",
+pros:["Seamless","Durable","Luxury"]
+},
+
+{
+name:"Microtopping Flooring",
+price:"₹200/sqft",
+images:[
+"https://img.sanishtech.com/u/219e5de71e7efb1196237f064af76d46.jpg",
+"https://img.sanishtech.com/u/b4bfc2d2ae8716f0ff7166ff50cf4fc5.png"
+],
+desc:"Luxury seamless flooring.",
+pros:["Joint-free","Durable","Modern"]
+},
+
+{
+name:"Lime Plaster",
+price:"₹170/sqft",
+images:[
+"https://img.sanishtech.com/u/930a1b0bd69fcb1b3b165dacf28d97a3.png",
+"https://img.sanishtech.com/u/7aa7f82c84a2b18bb4f89dbbe017861b.png"
+],
+desc:"Natural wall finish.",
+pros:["Eco-friendly","Smooth","Classic"]
+},
+
+{
+name:"Lime Wash",
+price:"₹120/sqft",
+images:[
+"https://img.sanishtech.com/u/69be221713682be874f86287526c6098.jpg",
+"https://img.sanishtech.com/u/3b3a889a5b9028a1d58acb0d707d9e41.jpg"
+],
+desc:"Soft textured paint.",
+pros:["Breathable","Rustic","Elegant"]
+},
+
+{
+name:"Italian Perlato",
+price:"₹160/sqft",
+images:[
+"https://img.sanishtech.com/u/69f3388eb143d1b60c3c5d4f01553b5c.png",
+"https://img.sanishtech.com/u/59a2bc1978207ad554adb4d7d6748d3e.png"
+],
+desc:"Pearl finish wall texture.",
+pros:["Luxury shine","Smooth","Premium"]
+},
+
+{
+name:"Italian Stucco",
+price:"₹150/sqft",
+images:[
+"https://img.sanishtech.com/u/133cb04aa3c4aec0fa64d9dfb7f6ea29.png",
+"https://img.sanishtech.com/u/343ac064c209ff38053b135af33c8500.png"
+],
+desc:"Marble-like glossy finish.",
+pros:["Glossy","Durable","Elegant"]
+},
+
+{
+name:"Romano Concrete Texture",
+price:"₹160/sqft",
+images:[
+"https://img.sanishtech.com/u/d4b2af807c68beaf5b7cecdec07897b7.png",
+"https://img.sanishtech.com/u/3de4554318f8daab026c92a92dd5ee99.webp"
+],
+desc:"Industrial concrete style.",
+pros:["Raw look","Strong","Modern"]
+},
+
+{
+name:"Luxury House Painting",
+price:"₹45/sqft",
+images:[
+"https://img.sanishtech.com/u/3322cf6147d3154e11df0c43e1d17789.png"
+],
+desc:"Premium painting service.",
+pros:["Smooth","Long-lasting","Clean work"]
+}
+
+];
+
+const container=document.getElementById("products");
+
+products.forEach((p,i)=>{
+container.innerHTML+=`
+<div class="card" onclick="openModal(${i})">
+<img src="${p.images[0]}">
+<h3>${p.name}</h3>
+<p>${p.price}</p>
+</div>`;
+});
+
+let current=0,active;
+
+function openModal(i){
+active=products[i];
+document.getElementById("modal").style.display="flex";
+current=0;show();
+
+document.getElementById("title").innerText=active.name;
+document.getElementById("price").innerText=active.price;
+document.getElementById("desc").innerText=active.desc;
+
+let ul=document.getElementById("pros");
+ul.innerHTML="";
+active.pros.forEach(p=>ul.innerHTML+=`<li>${p}</li>`);
+
+document.getElementById("wa").href=
+`https://wa.me/919207408831?text=Hi, I need price for ${active.name}`;
+}
+
+function show(){
+document.getElementById("slide").src=active.images[current];
+let dots="";
+active.images.forEach((_,i)=>dots+=`<span class="${i==current?'active':''}"></span>`);
+document.getElementById("dots").innerHTML=dots;
+}
+
+setInterval(()=>{
+if(active){
+current=(current+1)%active.images.length;
+show();
+}
+},3000);
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+active=null;
+}
+
+</script>
+
+</body>
+</html>
